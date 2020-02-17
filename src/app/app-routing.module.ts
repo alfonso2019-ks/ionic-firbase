@@ -8,14 +8,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/todo-details/todo-details.module').then( m => m.TodoDetailsPageModule)},
   {path: 'details',
     loadChildren: () => import('./pages/todo-details/todo-details.module').then( m => m.TodoDetailsPageModule)},
-  {
-    path: 'developers',
+  {path: 'developers',
     loadChildren: () => import('./pages/developers/developers.module').then( m => m.DevelopersPageModule)
   },
-  {
-    path: 'developer',
+  { path: 'developer',
     loadChildren: () => import('./pages/developer/developer.module').then( m => m.DeveloperPageModule)
   },
+  { path: 'developers/:id',
+    loadChildren: () => import('./pages/developers/developers.module').then( m => m.DevelopersPageModule)
+  }
 ];
 
 @NgModule({
