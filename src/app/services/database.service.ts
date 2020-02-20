@@ -75,7 +75,7 @@ export class DatabaseService {
     });
   }
 
-  getDevelopers(id): Promise<Itask>{
+  getTask(id): Promise<Itask>{
     return this.database.executeSql('SELECT * from tasks WHERE id = ?', [id]).then(data=>{
       return{
         id: data.rows.item(0).id,

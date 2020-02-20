@@ -1,9 +1,36 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>developers</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <ion-segment [(ngModel)]="selectedView">
+    <ion-segment-button value="tasks">
+      <ion-label>Task</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="selectedView">
+    <div *ngSwitchCase="'tasks'">
+      <ion-item>
+        <ion-label position="staked">Name task</ion-label>
+        <ion-input [(ngModel)]="task.task" placeholder="Task name"></ion-input>
+      </ion-item>
+      <ion-button (click)="addTask()" expand="block" fill="clear" shape="round">Add Task</ion-button>
+      <ion-list>
+        <ion-item button *ngFor="let task of tasks" [routerLink]="['/','tasks',task.id]">
+          <ion-label>
+            <h2>{{task.task}}</h2>
+            <h3>{{task.priority}}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    
+    <div *ngSwitchCase="'products'">
+
+    </div>
+  </div>
 
 </ion-content>
