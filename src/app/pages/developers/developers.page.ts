@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from 'src/app/services/database.service';
+import { Itask } from 'src/app/models/task.interface';
 
 @Component({
   selector: 'app-developers',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DevelopersPage implements OnInit {
 
-  constructor() { }
+  tasks: Itask[]=[];
+
+  constructor(private db: DatabaseService) { }
 
   ngOnInit() {
+    this.db.seedDatabase().suscribe(ready =>{
+      if(ready){
+        this.db.getTasks().subscribe(task=>{
+          console.log('task change', task);
+          this.tasks = task;
+        });
+      }
+    });
   }
 
 }
